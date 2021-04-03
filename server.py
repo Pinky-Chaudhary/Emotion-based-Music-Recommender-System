@@ -8,4 +8,4 @@ if __name__ == '__main__':
     app.debug = True
     connect_to_db(app)
     app.config['DEBUG_TB_INTERCEPT_REDIRECTS'] = True
-    app.run(port=8000)
+    app.run(host="localhost",port=8000)

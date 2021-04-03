@@ -11,7 +11,7 @@ function setText( text ,id) {
 
 async function setupWebcam() {
             return new Promise( ( resolve, reject ) => {
-                const webcamElement = document.getElementById( "webcam" );
+                const webcamElement = document.getElementById("webcam");
                 webcamElement.style.display = "none";
                 const navigatorAny = navigator;
                 navigator.getUserMedia = navigator.getUserMedia ||
@@ -111,7 +111,7 @@ async function setupWebcam() {
 
         (async () => {
             await setupWebcam();
-            const video = document.getElementById( "webcam" );
+            const video = document.getElementById("webcam");
             video.play();
             let videoWidth = video.videoWidth;
             let videoHeight = video.videoHeight;

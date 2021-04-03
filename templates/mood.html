@@ -1,24 +1,24 @@
 {% extends 'base.html' %}
 {% block content %}
     <link href="../static/css/mood.css" rel="stylesheet">
-    <script src="../static/js/mood.js" type="text/javascript"></script>
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@2.4.0/dist/tf.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/face-landmarks-detection@0.0.1/dist/face-landmarks-detection.js"></script>
         <div class="webcam__block text-center">
             <canvas id="output" width="auto" height="auto"></canvas>
         </div>
         <div align="center">
-        <h1>Name Your Playlist</h1>
+            <h1>Name Your Playlist</h1>
 
-        <form action = "/playlist">
-            <input type='text' id='name' name="name" class="name" placeholder='Ex: My Playlist' required="true">
-            <h1 id="status" >Loading the Model</h1>
-            <input type="submit" class="button special">
-            <input type="number" id="mood" name ="mood" hidden="True">
+            <form action = "/playlist">
+                <input type='text' id='name' name="name" class="name" placeholder='Ex: My Playlist' required="true">
+                <h1 id="status" >Loading the Model</h1>
+                <input type="submit" class="button special">
+                <input type="number" id="mood" name ="mood" hidden="True">
+                <div>
+                    <video id="webcam" playsinline style="display: block; width: auto;
+                    height: auto;"></video>
+                </div>
         </form>
-        <div>
-            <video id="webcam" style="display: block;"></video>
-        </div>
     </div>
-
+<script src="../static/js/mood.js" type="text/javascript"></script>
 {% endblock %}
