@@ -33,7 +33,7 @@ def homepage():
 def authorization():
     """ Spotify Authorization Page """
     auth_url = spotify.get_user_authorization()
-    console.log("auth_url",auth_url)
+    print("auth_url",auth_url)
     return redirect(auth_url)
 
 @app.route('/callback/')
