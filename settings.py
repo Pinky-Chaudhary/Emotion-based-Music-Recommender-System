@@ -1,6 +1,5 @@
-CLIENT_SIDE_URL='http://localhost'
-PORT = 8000
-REDIRECT_URI = "{}:{}/callback/".format(CLIENT_SIDE_URL, PORT)
+CLIENT_SIDE_URL='https://demo-spotify-api-user.herokuapp.com'
+REDIRECT_URI = "{}/callback/".format(CLIENT_SIDE_URL)
 
 # Client Keys
 CLIENT_ID='aa6da89a8bdd44ffbe6d97d7460b6927'
