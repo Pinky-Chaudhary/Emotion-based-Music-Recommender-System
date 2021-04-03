@@ -10,6 +10,7 @@ import datetime
 from jinja2 import StrictUndefined
 # import emocognizer as tk
 app = Flask(__name__)
+app.secret_key = 'SECRETSECRETSECRET'
 
 app.jinja_env.undefinded = StrictUndefined
 
