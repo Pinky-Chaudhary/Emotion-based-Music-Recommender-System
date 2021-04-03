@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <link href="../static/css/main.css" rel="stylesheet">
+    <div id="wrapper" class="divided" style="background-color:rgb(255, 156, 100);">
+				<!-- Intro and Search -->
+					<section class="banner style1 orient-right content-align-left image-position-right fullscreen onload-image-fade-in onload-content-fade-left">
+						<div class="content">
+                            <h1>Open Camera</h1>
+                            <div class="card text-center hoverable card__small" id="open_camera" onclick="location.href = '/mood'">
+                                <i class="fas fa-camera fa-lg main__icon"></i>
+                            </div>
+                            <br/>
+                            <h1>Your Recently Played Songs</h1>
+                            <div class="card text-center hoverable card__small" onclick="location.href = '/playlist-created'">
+                                <i class="fas fa-music main__icon"></i>
+                            </div>
+                        </div>
+                        <div class="image">
+                            <img src="../static/images/home.jpg" alt=""/>
+                        </div>
+                </section>
+			</div>
+
+{% endblock %}
