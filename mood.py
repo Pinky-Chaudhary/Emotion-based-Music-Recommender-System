@@ -7,7 +7,8 @@ from settings import *
 from scipy import stats
 import numpy as np
 from flask_sqlalchemy import SQLAlchemy
-from model import User, Track, UserTrack, db, connect_to_db
+from model import User, Track, UserTrack
+from server import db
 def get_top_artists(auth_header, num_entities):
     """ Return list of new user's top and followed artists """
     artists = []
