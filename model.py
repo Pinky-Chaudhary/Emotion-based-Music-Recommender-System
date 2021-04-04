@@ -53,6 +53,5 @@ if __name__ == "__main__":
     # For interactive mode
 
     from server import app,db
-    connect_to_db(app)
     db.create_all()
     print("Connected to DB.")
