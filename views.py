@@ -1,10 +1,7 @@
 import requests
 from functools import wraps
-import spotify,mood
-from settings import *
 import json
 from flask import Flask, request, redirect, render_template, flash, session,jsonify
-from model import User, Track, UserTrack
 import datetime
 from jinja2 import StrictUndefined
 from flask_sqlalchemy import SQLAlchemy
@@ -20,6 +17,11 @@ db = SQLAlchemy(app)
 @app.before_first_request
 def create_tables():
     db.create_all()
+
+from model import User, Track, UserTrack
+import spotify,mood
+from settings import *
+
 
 def requires_auth(f):
   @wraps(f)
