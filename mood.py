@@ -76,7 +76,6 @@ def get_top_tracks(auth_header,artists):
             if track['id'] not in top_tracks:
                 top_tracks.append(track['id'])
         db.session.commit()
-    print(top_tracks)
     return top_tracks
 
 
@@ -105,34 +104,30 @@ def add_and_get_user_tracks(auth_header, clustered_tracks):
             if track:
                 track_uri = track['uri']
                 track_valence = track['valence']
-                track_danceability = track['danceability']
                 track_energy = track['energy']
 
                 track_exist = db.session.query(Track).filter(Track.uri == track_uri).one()
 
                 if track_exist:
                     track_exist.valence = track_valence
-                    track_exist.danceability = track_danceability
                     track_exist.energy = track_energy
 
         db.session.commit()
 
-    no_audio_feats = db.session.query(Track).filter(Track.valence == None, Track.danceability == None,
-                                                    Track.energy == None).all()
+    no_audio_feats = db.session.query(Track).filter(Track.valence == None,Track.energy == None).all()
     for track in no_audio_feats:
         db.session.delete(track)
     db.session.commit()
     user_id = session.get('user')
     user = db.session.query(User).filter(User.id == user_id).one()
     user_tracks = user.tracks
-    print(user_tracks)
     return user_tracks
 
 
 def standardize_audio_features(user_tracks):
     """ Return dictionary of standardized audio features.
         Dict = Track Uri: {Audio Feature: Cumulative Distribution} """
-
+    print(user_tracks)
     user_tracks_valence = list(map(lambda track: track.valence, user_tracks))
     valence_array = np.array(user_tracks_valence)
     valence_zscores = stats.zscore(valence_array)
