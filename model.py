@@ -54,6 +54,7 @@ def connect_to_db(app):
 if __name__ == "__main__":
     # For interactive mode
     from views import app
+    
     connect_to_db(app)
     db.create_all()
     print("Connected to DB.")
