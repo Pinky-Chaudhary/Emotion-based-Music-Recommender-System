@@ -95,6 +95,10 @@ def get_user_mood():
     session['artists'] = artists
     return render_template('main.html')
 
+@app.route('/camera')
+@requires_auth
+def open_camera():
+    return render_template('mood.html')
 
 
 @app.route('/playlist')
