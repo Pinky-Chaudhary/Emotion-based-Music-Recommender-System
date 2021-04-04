@@ -61,7 +61,6 @@ def callback_handling():
     elif session['access_token_expires'] < datetime.datetime.now():
         response_data = spotify.get_refreshed_token()
         session['access_token'] = response_data['access_token']
-        session['refresh_token'] = response_data['refresh_token']
         expires = datetime.datetime.now() + datetime.timedelta(seconds=response_data['expires_in'])
         session['access_token_expires'] = expires
 
