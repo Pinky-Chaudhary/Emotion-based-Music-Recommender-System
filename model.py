@@ -49,9 +49,10 @@ def connect_to_db(app):
 
     # Configure to use PostgreSQL database
     app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
-    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
+    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = os.environ['SQLALCHEMY_TRACK_MODIFICATIONS']
     db.app = app
     db.init_app(app)
+    db.create_all()
 
 if __name__ == "__main__":
     # For interactive mode
