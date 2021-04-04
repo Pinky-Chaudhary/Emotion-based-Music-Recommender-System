@@ -54,7 +54,7 @@ def get_top_tracks(auth_header,artists):
         track_data = get_spotify_data(request, auth_header)
         tracks = track_data['tracks']
 
-                for track in tracks:
+        for track in tracks:
             track_uri = track['uri']
             track_id = track['id']
             track_name = track['name']
