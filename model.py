@@ -1,5 +1,6 @@
 """ Models and database function for ***** """
-from views import app,db
+from views import db
+
 class User(db.Model):
     """ User Information"""
 
@@ -51,5 +52,6 @@ def connect_to_db(app):
 
 if __name__ == "__main__":
     # For interactive mode
+    from views import app
     db.create_all()
     print("Connected to DB.")
