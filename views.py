@@ -4,13 +4,11 @@ import spotify,mood
 from settings import *
 import json
 from flask import Flask, request, redirect, render_template, flash, session,jsonify
-from model import User, Track, UserTrack, db, connect_to_db
+from model import User, Track, UserTrack
 import datetime
-
+from server import app,db
 from jinja2 import StrictUndefined
 # import emocognizer as tk
-app = Flask(__name__)
-app.secret_key = 'SECRETSECRETSECRET'
 
 app.jinja_env.undefinded = StrictUndefined
 
