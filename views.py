@@ -14,6 +14,8 @@ app = Flask(__name__)
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 app.secret_key = os.environ['Secret_Key']
 app.jinja_env.undefinded = StrictUndefined
+db.init_app(app)
+
 
 def requires_auth(f):
   @wraps(f)
