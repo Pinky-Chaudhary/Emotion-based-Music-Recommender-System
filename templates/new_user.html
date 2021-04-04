@@ -1,25 +1,21 @@
 {% extends 'base.html' %}
 {% block content %}
     <div id="wrapper" class="divided">
-				<!-- Intro and Search -->
-					<section class="banner style1 orient-right content-align-left image-position-right fullscreen onload-image-fade-in onload-content-fade-left">
-						<div class="content">
-							<h1>Welcome to Semotions</h1>
-							<p class="major">
-								Semotion could not find any previous Tracks.
-                                <br/>
-								Lets Explore Some Music On Spotify.
-							</p>
-							<div class="actions vertical">
-								<input type="submit" name="submit" id="submit" value="Open Spotify" class="button special" onclick="window.location.href='https://open.spotify.com/'"/>
-							</div>
-						</div>
-
-						<div class="image">
-							<img src="../static/images/new_user.jpeg" alt="Hello User" />
-						</div>
-
-					</section>
-
+	<section class="banner style1 orient-right content-align-left image-position-right fullscreen onload-image-fade-in onload-content-fade-left">
+		<div class="content">
+			<h1>Welcome to Semotions</h1>
+			<p class="major">
+				Semotion could not find any previous Tracks.
+                        <br/>
+				Lets Explore Some Music On Spotify.
+			</p>
+			<div class="actions vertical">
+				<input type="submit" name="submit" id="submit" value="Open Spotify" class="button special" onclick="window.location.href='https://open.spotify.com/'"/>
 			</div>
+		</div>
+		<div class="image">
+			<img src="../static/images/new_user.jpg" alt="Hello User" />
+		</div>
+	</section>
+    </div>
 {% endblock %}
