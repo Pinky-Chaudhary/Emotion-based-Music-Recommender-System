@@ -12,10 +12,14 @@ import os
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
 app.secret_key = os.environ['Secret_Key']
 app.jinja_env.undefinded = StrictUndefined
-db.init_app(app)
+db = SQLAlchemy(app)
 
+@app.before_first_request
+def create_tables():
+    db.create_all()
 
 def requires_auth(f):
   @wraps(f)
