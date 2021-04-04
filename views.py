@@ -122,9 +122,11 @@ def playlist_created():
         cluster = mood.cluster_ids(top_tracks)
         user_tracks = mood.add_and_get_user_tracks(auth_header, cluster)
     audio_feat = mood.standardize_audio_features(user_tracks)
+    print(audio_feat)
     playlist_tracks = mood.select_tracks(audio_feat, user_mood)
+    print(playlist_tracks)
     spotify_play = mood.create_playlist(auth_header, username, playlist_tracks, user_mood, name)
-
+    print(spotify_play)
     session['spotify'] = spotify_play
     playlist_iframe_href = "https://open.spotify.com/embed?uri=spotify:user:" + username + ":playlist:" + spotify_play
     return render_template('playlist.html', playlist_iframe_href=playlist_iframe_href,header="Your Playlist hase been created")
