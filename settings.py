@@ -1,9 +1,9 @@
-CLIENT_SIDE_URL='https://demo-spotify-api-user.herokuapp.com'
-REDIRECT_URI = "{}/callback/".format(CLIENT_SIDE_URL)
+import os
+REDIRECT_URI = os.environ['REDIRECT_URI']
 
 # Client Keys
-CLIENT_ID='aa6da89a8bdd44ffbe6d97d7460b6927'
-CLIENT_SECRET='8c267a6ebc6b4500806cae0a3ecef2e3'
+CLIENT_ID= os.environ['CLIENT_ID']
+CLIENT_SECRET = os.environ['CLIENT_SECRET']
 
 # Scope for refrenced Spotify APIs
 SCOPE = "user-top-read user-follow-read user-follow-modify playlist-modify-public playlist-modify-private user-read-recently-played"
