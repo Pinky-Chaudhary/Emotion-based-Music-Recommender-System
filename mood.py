@@ -55,6 +55,7 @@ def get_top_tracks(auth_header,artists):
         tracks = track_data['tracks']
         
         for track in tracks:
+            print(track['is_playable'])
             if track['is_playable'] == 'true':
                 track_uri = track['uri']
                 track_id = track['id']
