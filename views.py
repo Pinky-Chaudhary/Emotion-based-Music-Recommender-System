@@ -40,7 +40,10 @@ def callback_handling():
     if 'access_token' not in session:
         response_data = spotify.get_tokens()
         session['access_token'] = response_data['access_token']
-        session['refresh_token'] = response_data['refresh_token']
+        session['refresh_token'] = response_data['refresh_token']        
+        expires = datetime.datetime.now() + datetime.timedelta(seconds=response_data['expires_in'])
+        session['access_token_expires'] = expires
+
         auth_header = spotify.get_auth_header(session.get('access_token'))
         username = spotify.get_user_id(auth_header)
         session['user'] = username
@@ -49,9 +52,6 @@ def callback_handling():
             new_user = User(id=username, refresh_token=response_data['refresh_token'])
             db.session.add(new_user)
             db.session.commit()
-
-        expires = datetime.datetime.now() + datetime.timedelta(seconds=response_data['expires_in'])
-        session['access_token_expires'] = expires
 
     elif session['access_token_expires'] < datetime.datetime.now():
         response_data = spotify.get_refreshed_token()
