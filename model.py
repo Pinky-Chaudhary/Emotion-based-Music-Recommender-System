@@ -1,5 +1,8 @@
 """ Models and database function for ***** """
-from views import db
+from flask import Flask
+from flask_sqlalchemy import SQLAlchemy
+
+db = SQLAlchemy()
 
 class User(db.Model):
     """ User Information"""
