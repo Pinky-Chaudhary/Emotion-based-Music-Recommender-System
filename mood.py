@@ -50,31 +50,32 @@ def get_top_tracks(auth_header,artists):
     """ Return list containing 10 track ids per artist.    """
     top_tracks = []
     for artist_id in artists:
-        request = "{}/artists/{}/top-tracks?market=IN".format(SPOTIFY_API_URL, artist_id)
+        request = "{}/artists/{}/top-tracks?market=from_token".format(SPOTIFY_API_URL, artist_id)
         track_data = get_spotify_data(request, auth_header)
         tracks = track_data['tracks']
-
+        
         for track in tracks:
-            track_uri = track['uri']
-            track_id = track['id']
-            track_name = track['name']
-
-            track_exist = db.session.query(Track).filter(Track.uri == track_uri).all()
-
-            if not track_exist:
-                new_track = Track(uri=track_uri, id=track_id, name=track_name)
-                db.session.add(new_track)
-
-            user = session.get('user')
-            new_user_track_exist = db.session.query(UserTrack).filter(UserTrack.user_id == user,
-                                                                      UserTrack.track_uri == track_uri).all()
-
-            if not new_user_track_exist:
-                new_user_track = UserTrack(user_id=user, track_uri=track_uri)
-                db.session.add(new_user_track)
-
-            if track['id'] not in top_tracks:
-                top_tracks.append(track['id'])
+            if track['is_playable'] == 'true':
+                track_uri = track['uri']
+                track_id = track['id']
+                track_name = track['name']
+    
+                track_exist = db.session.query(Track).filter(Track.uri == track_uri).all()
+    
+                if not track_exist:
+                    new_track = Track(uri=track_uri, id=track_id, name=track_name)
+                    db.session.add(new_track)
+    
+                user = session.get('user')
+                new_user_track_exist = db.session.query(UserTrack).filter(UserTrack.user_id == user,
+                                                                          UserTrack.track_uri == track_uri).all()
+    
+                if not new_user_track_exist:
+                    new_user_track = UserTrack(user_id=user, track_uri=track_uri)
+                    db.session.add(new_user_track)
+    
+                if track['id'] not in top_tracks:
+                    top_tracks.append(track['id'])
         db.session.commit()
 
     return top_tracks
