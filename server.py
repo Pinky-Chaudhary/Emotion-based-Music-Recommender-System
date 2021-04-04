@@ -1,11 +1,12 @@
-from flask_debugtoolbar import DebugToolbarExtension
+from flask import Flask
+from flask_sqlalchemy import SQLAlchemy
+import os
 
-from views import app
-from model import connect_to_db
+app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
+app.secret_key = os.environ['Secret_Key']
+db = SQLAlchemy(app)
 
 if __name__ == '__main__':
-    app.secret_key = 'SECRETSECRETSECRET'
-    app.debug = True
-    connect_to_db(app)
-    app.config['DEBUG_TB_INTERCEPT_REDIRECTS'] = True
-    app.run(host="localhost",port=8000)
+    app.run()
