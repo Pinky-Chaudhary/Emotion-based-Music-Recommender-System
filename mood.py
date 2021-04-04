@@ -76,7 +76,7 @@ def get_top_tracks(auth_header,artists):
             if track['id'] not in top_tracks:
                 top_tracks.append(track['id'])
         db.session.commit()
-
+    print(top_tracks)
     return top_tracks
 
 
@@ -125,6 +125,7 @@ def add_and_get_user_tracks(auth_header, clustered_tracks):
     user_id = session.get('user')
     user = db.session.query(User).filter(User.id == user_id).one()
     user_tracks = user.tracks
+    print(user_tracks)
     return user_tracks
 
 
