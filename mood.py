@@ -6,7 +6,8 @@ from spotify import *
 from settings import *
 from scipy import stats
 import numpy as np
-from model import User, Track, UserTrack, db
+from model import User, Track, UserTrack
+from views import db
 
 
 def get_top_artists(auth_header, num_entities):
