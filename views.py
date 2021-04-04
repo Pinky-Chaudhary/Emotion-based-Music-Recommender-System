@@ -70,7 +70,7 @@ def callback_handling():
         expires = datetime.datetime.now() + datetime.timedelta(seconds=response_data['expires_in'])
         session['access_token_expires'] = expires
 
-    return render_template('main.html')
+    return redirect('/mood')
 
 
 
@@ -93,7 +93,7 @@ def get_user_mood():
     if len(artists)==0:
         return render_template('new_user.html')
     session['artists'] = artists
-    return render_template('mood.html')
+    return render_template('main.html')
 
 
 
