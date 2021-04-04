@@ -127,9 +127,7 @@ def add_and_get_user_tracks(auth_header, clustered_tracks):
 def standardize_audio_features(user_tracks):
     """ Return dictionary of standardized audio features.
         Dict = Track Uri: {Audio Feature: Cumulative Distribution} """
-    print(user_tracks)
     user_tracks_valence = list(map(lambda track: track.valence, user_tracks))
-    print("user_tracks_valence",user_tracks_valence)
     valence_array = np.array(user_tracks_valence)
     valence_zscores = stats.zscore(valence_array)
     valence_zscores = valence_zscores.astype(dtype=float).tolist()
