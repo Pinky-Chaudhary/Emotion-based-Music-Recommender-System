@@ -47,6 +47,7 @@ def connect_to_db(app):
     """Connect the database to app."""
 
     # Configure to use PostgreSQL database
+    app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
     db.app = app
     db.init_app(app)
 
