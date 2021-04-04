@@ -1,9 +1,5 @@
 """ Models and database function for ***** """
-from flask import Flask
-from flask_sqlalchemy import SQLAlchemy
-
-db = SQLAlchemy()
-
+from views import db
 class User(db.Model):
     """ User Information"""
 
@@ -43,18 +39,18 @@ class UserTrack(db.Model):
     track_uri = db.Column(db.String, db.ForeignKey('tracks.uri'), nullable=False)
 
 
-def connect_to_db(app):
-    """Connect the database to app."""
+# def connect_to_db(app):
+#     """Connect the database to app."""
 
-    # Configure to use PostgreSQL database
-    app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
-    db.app = app
-    db.init_app(app)
+#     # Configure to use PostgreSQL database
+#     app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
+#     db.app = app
+#     db.init_app(app)
 
-if __name__ == "__main__":
-    # For interactive mode
-    from views import app
+# if __name__ == "__main__":
+#     # For interactive mode
+#     from views import app
     
-    connect_to_db(app)
-    db.create_all()
-    print("Connected to DB.")
+#     connect_to_db(app)
+#     db.create_all()
+#     print("Connected to DB.")
