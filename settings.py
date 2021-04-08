@@ -1,12 +1,13 @@
-import os
-REDIRECT_URI = os.environ['REDIRECT_URI']
+CLIENT_SIDE_URL='http://localhost'
+PORT = 5000
+REDIRECT_URI = "{}:{}/mood".format(CLIENT_SIDE_URL, PORT)
 
 # Client Keys
-CLIENT_ID= os.environ['CLIENT_ID']
-CLIENT_SECRET = os.environ['CLIENT_SECRET']
+CLIENT_ID='aa6da89a8bdd44ffbe6d97d7460b6927'
+CLIENT_SECRET=
 
 # Scope for refrenced Spotify APIs
-SCOPE = "user-top-read user-follow-read user-follow-modify playlist-modify-public playlist-modify-private user-read-recently-played"
+SCOPE = "user-top-read user-follow-read user-follow-modify playlist-modify-public playlist-modify-private"
 
 # Spotify URL
 SPOTIFY_AUTH_URL='https://accounts.spotify.com/authorize'

@@ -1,18 +1,28 @@
-@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300i,400,400i");
-/*
-	Story by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
-*/
+body{
+         font-family: "Sofia", sans-serif;
+}
+.left, .right {
+  float: left;
+  width: 20%; /* The width is 20%, by default */
+}
 
-/* Reset */
+.main {
+  float: left;
+  width: 60%; /* The width is 60%, by default */
+}
+
+/* Use a media query to add a breakpoint at 800px: */
+@media screen and (max-width: 800px) {
+  .left, .main, .right {
+    width: 100%; /* The width is 100%, when the viewport is 800px or smaller */
+  }
+}
 
 	html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
 		margin: 0;
 		padding: 0;
 		border: 0;
 		font-size: 100%;
-		font: inherit;
 		vertical-align: baseline;
 	}
 
@@ -1679,7 +1689,7 @@
 	}
 
 	body, input, select, textarea {
-		font-family: "Source Sans Pro", Helvetica, sans-serif;
+
 		font-size: 1rem;
 		font-weight: 300;
 		line-height: 1.65;
@@ -1769,28 +1779,6 @@
 		padding: 0.5rem 0 0.5rem 2rem;
 	}
 
-	code {
-		border-radius: 4px;
-		font-family: "Courier New", monospace;
-		font-size: 0.9em;
-		margin: 0 0.25rem;
-		padding: 0.25rem 0.325rem;
-	}
-
-	pre {
-		-webkit-overflow-scrolling: touch;
-		font-family: "Courier New", monospace;
-		font-size: 0.9em;
-		margin: 0 0 2rem 0;
-	}
-
-		pre code {
-			display: block;
-			line-height: 1.5;
-			padding: 0.75rem 1rem;
-			overflow-x: auto;
-		}
-
 	hr {
 		border: 0;
 		border-bottom: solid 1px;
@@ -1859,11 +1847,6 @@
 
 	blockquote {
 		border-left-color: rgba(0, 0, 0, 0.2);
-	}
-
-	code {
-		background: rgba(0, 0, 0, 0.05);
-		border-color: rgba(0, 0, 0, 0.2);
 	}
 
 	hr {
@@ -2029,7 +2012,7 @@
 		input[type="button"].special,
 		button.special,
 		.button.special {
-			background-color: #000000;
+			background-color: #b05b5b;
 			box-shadow: none;
 			color: #ffffff !important;
 		}
@@ -2039,7 +2022,7 @@
 			input[type="button"].special:hover,
 			button.special:hover,
 			.button.special:hover {
-				background-color: #47D3E5;
+				background-color: #f7c1c1;
 			}
 
 			input[type="submit"].special:active,
@@ -2047,7 +2030,7 @@
 			input[type="button"].special:active,
 			button.special:active,
 			.button.special:active {
-				background-color: #1ebdd1;
+				background-color: #3b2323;
 			}
 
 /* Form */
@@ -2183,7 +2166,6 @@
 		.select-wrapper:before {
 			-moz-osx-font-smoothing: grayscale;
 			-webkit-font-smoothing: antialiased;
-			font-family: FontAwesome;
 			font-style: normal;
 			font-weight: normal;
 			text-transform: none !important;
@@ -2255,7 +2237,6 @@
 			input[type="radio"] + label:before {
 				-moz-osx-font-smoothing: grayscale;
 				-webkit-font-smoothing: antialiased;
-				font-family: FontAwesome;
 				font-style: normal;
 				font-weight: normal;
 				text-transform: none !important;
@@ -2395,7 +2376,7 @@
 		.icon:before {
 			-moz-osx-font-smoothing: grayscale;
 			-webkit-font-smoothing: antialiased;
-			font-family: FontAwesome;
+
 			font-style: normal;
 			font-weight: normal;
 			text-transform: none !important;
@@ -3257,7 +3238,7 @@
 	}
 
 		.banner.style1 .content {
-			padding: 7rem 7rem 5rem 7rem ;
+
 			-moz-align-self: center;
 			-webkit-align-self: center;
 			-ms-align-self: center;
@@ -3333,7 +3314,7 @@
 		@media screen and (max-width: 736px) {
 
 			.banner.style1 .content {
-				padding: 2.5rem 2rem 0.5rem 2rem ;
+
 			}
 
 		}
@@ -3440,7 +3421,7 @@
 /* Banner (style2) */
 
 	.banner.style2 {
-		padding: 5.25rem 5.25rem 3.25rem 5.25rem ;
+
 		-moz-align-items: center;
 		-webkit-align-items: center;
 		-ms-align-items: center;
@@ -6607,7 +6588,7 @@
 			.gallery.style2 > .forward:before, .gallery.style2 > .backward:before {
 				-moz-osx-font-smoothing: grayscale;
 				-webkit-font-smoothing: antialiased;
-				font-family: FontAwesome;
+
 				font-style: normal;
 				font-weight: normal;
 				text-transform: none !important;

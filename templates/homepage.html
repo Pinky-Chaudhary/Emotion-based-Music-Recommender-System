@@ -2,14 +2,18 @@
 {% block content %}
 <!--    <div id="wrapper" class="divided">-->
 	<link href="../static/css/homepage.css" rel="stylesheet">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia">
 	<div id="wrapper" class="divided">
-		<section class="banner style1 orient-right content-align-left fullscreen onload-content-fade-left">
-			<div class="content">
-				<h1>Refine your musical Tour based on your emotion</h1>
-				<input type="submit" name="about" id="about" value="About" class="button special" onclick="location.href = '/about'"/>
-				<input type="submit" name="login" id="login" value="Connect Now" class="button special" onclick="location.href = '/spotify-auth'"/>
+			<div class="divisions">
+				<div class="heading">
+					<h1>SEMOTIONS</h1>
+					<h2>The Emotion Based Music Player</h2>
+				</div>
+				<div class="buttons_value">
+					<input type="submit" name="about" id="about" value="About" class="button special" onclick="location.href = '/about'"/>
+					<input type="submit" name="login" id="login" value="Login" class="button special" onclick="location.href = '/spotify-auth'"/>
+				</div>
 			</div>
-		</section>
 	</div>
 
 {% endblock %}

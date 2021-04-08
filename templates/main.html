@@ -2,18 +2,22 @@
 
 {% block content %}
     <link href="../static/css/main.css" rel="stylesheet">
-    <div id="wrapper" class="divided" style="background-color:rgb(255, 156, 100);">
+    <div id="wrapper" class="divided" style="background-color:#fce8c5;">
 				<!-- Intro and Search -->
-					<section class="banner style1 orient-right content-align-left image-position-right fullscreen onload-image-fade-in onload-content-fade-left">
+					<section class="banner style1 orient-right content-align-left fullscreen onload-image-fade-in onload-content-fade-left">
 						<div class="content">
-                            <h1>Open Camera</h1>
-                            <div class="card text-center hoverable card__small" id="open_camera" onclick="location.href = '/camera'">
-                                <i class="fas fa-camera fa-lg main__icon"></i>
+                            <div class="image_content">
+                                <h1 align="center" >Open Camera</h1>
+                                <div class="card hoverable card__small" id="open_camera" onclick="location.href = '/camera'">
+                                    <i class="fas fa-camera fa-lg main__icon"></i>
+                                </div>
                             </div>
-                            <br/>
-                            <h1>Your Recently Played Songs</h1>
-                            <div class="card text-center hoverable card__small" onclick="location.href = '/playlist-created'">
-                                <i class="fas fa-music main__icon"></i>
+                            <br/><br/>
+                            <div class="image_content">
+                                <h1 align="center">Recently Played Songs</h1>
+                                <div class="card hoverable card__small" onclick="location.href = '/playlist-created'">
+                                    <i class="fas fa-music main__icon"></i>
+                                </div>
                             </div>
                         </div>
                         <div class="image">

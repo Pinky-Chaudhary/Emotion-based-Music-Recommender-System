@@ -50,40 +50,35 @@ def get_top_tracks(auth_header,artists):
     """ Return list containing 10 track ids per artist.    """
     top_tracks = []
     for artist_id in artists:
-        request = "{}/artists/{}/top-tracks?market=from_token".format(SPOTIFY_API_URL, artist_id)
+        request = "{}/artists/{}/top-tracks?country=US".format(SPOTIFY_API_URL, artist_id)
         track_data = get_spotify_data(request, auth_header)
         tracks = track_data['tracks']
-        
-        for track in tracks[:10]:
-            print(track['is_playable'],type(track['is_playable']))
-            if track['is_playable'] == True:
-                track_uri = track['uri']
-                track_id = track['id']
-                track_name = track['name']
+
+
+        for track in tracks:
+            track_uri = track['uri']
+            track_id = track['id']
+            track_name = track['name']
+            track_exist = db.session.query(Track).filter(Track.uri == track_uri).all()
+            if not track_exist:
+                new_track = Track(uri=track_uri, id=track_id, name=track_name)
+                db.session.add(new_track)
     
-                track_exist = db.session.query(Track).filter(Track.uri == track_uri).all()
+            user = session.get('user')
+            new_user_track_exist = db.session.query(UserTrack).filter(UserTrack.user_id == user,UserTrack.track_uri == track_uri).all()
+            if not new_user_track_exist:
+                new_user_track = UserTrack(user_id=user, track_uri=track_uri)
+                db.session.add(new_user_track)
     
-                if not track_exist:
-                    new_track = Track(uri=track_uri, id=track_id, name=track_name)
-                    db.session.add(new_track)
-    
-                user = session.get('user')
-                new_user_track_exist = db.session.query(UserTrack).filter(UserTrack.user_id == user,
-                                                                          UserTrack.track_uri == track_uri).all()
-    
-                if not new_user_track_exist:
-                    new_user_track = UserTrack(user_id=user, track_uri=track_uri)
-                    db.session.add(new_user_track)
-    
-                if track['id'] not in top_tracks:
-                    top_tracks.append(track['id'])
+            if track['id'] not in top_tracks:
+                top_tracks.append(track['id'])
         db.session.commit()
 
     return top_tracks
 
 
-def cluster_ids(top_tracks, n=50):
-    """ Return list of track ids clustered in groups of 50 """
+def cluster_ids(top_tracks, n=100):
+    """ Return list of track ids clustered in groups of 100 """
     clustered_tracks = []
     for i in range(0, len(top_tracks), n):
         clustered_tracks.append(top_tracks[i:i + n])
@@ -114,9 +109,7 @@ def add_and_get_user_tracks(auth_header, clustered_tracks):
                 if track_exist:
                     track_exist.valence = track_valence
                     track_exist.energy = track_energy
-
         db.session.commit()
-
     no_audio_feats = db.session.query(Track).filter(Track.valence == None,Track.energy == None).all()
     for track in no_audio_feats:
         db.session.delete(track)
@@ -141,8 +134,6 @@ def standardize_audio_features(user_tracks):
     energy_zscores = stats.zscore(energy_array)
     energy_zscores = energy_zscores.astype(dtype=float).tolist()
     energy_cdf = stats.norm.cdf(energy_zscores)
-
-
     user_audio_features = {}
     for i, user_track in enumerate(user_tracks):
         user_audio_features[user_track.uri] = {'valence': valence_cdf[i], 'energy': energy_cdf[i] }
@@ -152,7 +143,7 @@ def standardize_audio_features(user_tracks):
 def select_tracks(user_audio_features, mood):
     """ Return set of spotify track uri's to add to playlist based on mood. """
     selected_tracks = []
-    emotions = ["angry", "disgust", "fear", "happy", "neutral", "sad", "surprise"];
+    emotions = ["angry", "disgust", "fear", "happy", "sad", "surprise", "neutral"]
 
     for track, feature in user_audio_features.items():
         if emotions[mood] == "angry":

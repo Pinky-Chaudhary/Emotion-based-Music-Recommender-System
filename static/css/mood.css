@@ -4,7 +4,6 @@ input[type=text]{
   border: 2px solid #ccc;
   border-radius: 4px;
   font-size: 16px;
-  padding: 12px 20px 12px 40px;
   transition: width 0.4s ease-in-out;
 }
 
@@ -18,7 +17,45 @@ input[type=text]:focus{
     align: center;
 }
 h1{
-    font: 50px Arial, sans-serif;
     font-weight: bold;
     text-align:center;
+}
+
+.inline {
+            display: inline-block;
+        }
+
+.center-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+   background-color: #fff1c7;
+}
+.side-by-side {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.margin-sm {
+  margin: 5px;
+}
+
+.margin {
+  margin: 20px;
+}
+
+#overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+#facesContainer canvas {
+  margin: 10px;
 }

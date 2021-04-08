@@ -14,10 +14,6 @@ app.secret_key = os.environ['Secret_Key']
 app.jinja_env.undefinded = StrictUndefined
 db = SQLAlchemy(app)
 
-@app.before_first_request
-def create_tables():
-    db.create_all()
-
 from model import User, Track, UserTrack
 import spotify,mood
 from settings import *
@@ -111,16 +107,16 @@ def playlist_created():
     name = request.args.get('name')
     user_mood = int(request.args.get('mood'))
     session['name'] = name
-
     user = db.session.query(User).filter(User.id == username).one()
     user_tracks = user.tracks
-
-
     if not user_tracks:
-        user_artists = session.get('artists')
-        top_tracks = mood.get_top_tracks(auth_header,user_artists)
-        cluster = mood.cluster_ids(top_tracks)
-        user_tracks = mood.add_and_get_user_tracks(auth_header, cluster)
+        try:
+                user_artists = session.get('artists')
+                top_tracks = mood.get_top_tracks(auth_header,user_artists)
+        finally:
+            cluster = mood.cluster_ids(top_tracks)
+            user_tracks = mood.add_and_get_user_tracks(auth_header, cluster)
+
     audio_feat = mood.standardize_audio_features(user_tracks)
     print(audio_feat)
     playlist_tracks = mood.select_tracks(audio_feat, user_mood)
@@ -129,7 +125,7 @@ def playlist_created():
     print(spotify_play)
     session['spotify'] = spotify_play
     playlist_iframe_href = "https://open.spotify.com/embed?uri=spotify:user:" + username + ":playlist:" + spotify_play
-    return render_template('playlist.html', playlist_iframe_href=playlist_iframe_href,header="Your Playlist hase been created")
+    return render_template('playlist.html', playlist_iframe_href=playlist_iframe_href,header="Playlist for ")
 
 @app.route('/playlist-created')
 @requires_auth
