@@ -125,7 +125,7 @@ def playlist_created():
     print(spotify_play)
     session['spotify'] = spotify_play
     playlist_iframe_href = "https://open.spotify.com/embed?uri=spotify:user:" + username + ":playlist:" + spotify_play
-    return render_template('playlist.html', playlist_iframe_href=playlist_iframe_href,header="Playlist for ")
+    return render_template('playlist.html', playlist_iframe_href=playlist_iframe_href,header="Playlist Generated")
 
 @app.route('/playlist-created')
 @requires_auth
