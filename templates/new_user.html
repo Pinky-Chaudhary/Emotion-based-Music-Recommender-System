@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div id="wrapper" class="divided">
+	<section class="banner style1 orient-right content-align-left image-position-right fullscreen onload-image-fade-in onload-content-fade-left">
+		<div class="content">
+			<h1>Welcome to Semotions</h1>
+			<p class="major">
+				Semotion could not find any previous Tracks.
+                        <br/>
+				Lets Explore Some Music On Spotify.
+			</p>
+			<div class="actions vertical">
+				<a href="https://open.spotify.com/" class="button special">Open Spotify</a>
+          			<a href='/logout' id="logout" class="button special">Logout</a>
+			</div>
+		</div>
+		<div class="image">
+			<img src="../static/images/new_user.jpg" alt="Hello User" />
+		</div>
+	</section>
+    </div>
+{% endblock %}
