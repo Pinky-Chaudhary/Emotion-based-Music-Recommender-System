@@ -1,7 +1,6 @@
 let scoreThreshold = 0.5
 let sizeType = '160'
 let modelLoaded = false
-let emotionmodelLoaded = false
 var cImg;
 var constraints = {
          audio: false,
@@ -18,7 +17,7 @@ var emotion_colors = ["#ff0000", "#00a800", "#ff4fc1", "#ffe100", "#306eff", "#f
 
 
 async function onPlay(videoEl) {
-    if (videoEl.paused || videoEl.ended || !modelLoaded || !emotionmodelLoaded)
+    if (videoEl.paused || videoEl.ended || !modelLoaded)
                 return false
 
     const {
@@ -60,7 +59,7 @@ async function onPlay(videoEl) {
                     let cT = ctx.getImageData(s_x, s_y, s_w, s_h);
                     cT = preprocess(cT);
 
-                    z = EmotionModel.predict(cT);
+                    z = await EmotionModel.predict(cT);
                     let index = z.argMax(1).dataSync()[0]
                     let label = emotion_labels[index];
                     document.getElementById('mood').value = index;
@@ -87,7 +86,7 @@ async function onPlay(videoEl) {
         // load emotion model
         async function loadModel(path) {
             EmotionModel = await createModel(path)
-            emotionmodelLoaded = true
+            console.log('EMotion Model Loaded");
         }
 
         function preprocess(imgData) {
