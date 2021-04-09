@@ -132,9 +132,9 @@ async function onPlay(videoEl) {
         
         }
 
-        $(document).ready(function() {
-            loadModel('../static/models/mobilenetv1_models/model.json')
-            const sizeTypeSelect = $('#sizeType')
-            sizeTypeSelect.val(sizeType)
+         $(document).ready(async function(){
+            EmotionModel = await tf.loadLayersModel('../static/models/mobilenetv1_models/model.json');
+            const sizeTypeSelect = $('#sizeType');
+            sizeTypeSelect.val(sizeType);
             run();
-        })
+        }());
