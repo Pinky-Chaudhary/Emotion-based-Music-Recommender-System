@@ -112,8 +112,8 @@ def playlist_created():
     if not user_tracks:
         try:
                 user_artists = session.get('artists')
-                top_tracks = mood.get_top_tracks(auth_header,user_artists)
         finally:
+            top_tracks = mood.get_top_tracks(auth_header,user_artists)
             cluster = mood.cluster_ids(top_tracks)
             user_tracks = mood.add_and_get_user_tracks(auth_header, cluster)
 
