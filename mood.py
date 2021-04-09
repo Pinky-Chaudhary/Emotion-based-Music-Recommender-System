@@ -50,7 +50,7 @@ def get_top_tracks(auth_header,artists):
     """ Return list containing 10 track ids per artist.    """
     top_tracks = []
     for artist_id in artists:
-        request = "{}/artists/{}/top-tracks?country=US".format(SPOTIFY_API_URL, artist_id)
+        request = "{}/artists/{}/top-tracks?country=IN".format(SPOTIFY_API_URL, artist_id)
         track_data = get_spotify_data(request, auth_header)
         tracks = track_data['tracks']
 
