@@ -1,6 +1,7 @@
 let scoreThreshold = 0.5
 let sizeType = '160'
 let modelLoaded = false
+let emotionmodelLoaded = false
 var cImg;
 var constraints = {
          audio: false,
@@ -15,8 +16,9 @@ var offset_y = 20;
 var emotion_labels = ["angry", "disgust", "fear", "happy", "sad", "surprise", "neutral"];
 var emotion_colors = ["#ff0000", "#00a800", "#ff4fc1", "#ffe100", "#306eff", "#ff9d00", "#7c7c7c"];
 
+
 async function onPlay(videoEl) {
-    if (videoEl.paused || videoEl.ended || !modelLoaded)
+    if (videoEl.paused || videoEl.ended || !modelLoaded || !emotionmodelLoaded)
                 return false
 
     const {
@@ -85,6 +87,7 @@ async function onPlay(videoEl) {
         // load emotion model
         async function loadModel(path) {
             EmotionModel = await createModel(path)
+            emotionmodelLoaded = true
         }
 
         function preprocess(imgData) {
@@ -117,7 +120,8 @@ async function onPlay(videoEl) {
             const Model_url = '../static/models/tiny_face_detector/tiny_face_detector_model-weights_manifest.json'
             await faceapi.loadTinyFaceDetectorModel(Model_url)
             modelLoaded = true
-
+                 
+            console.log("fetector Loaded");
             var status = document.getElementById('status');
             status.innerHTML = "Initializing the camera ... ";
 
@@ -126,13 +130,12 @@ async function onPlay(videoEl) {
                 .catch(errorCallback);
 
             onPlay($('#inputVideo').get(0))
-            $('#loader').hide()
+        
         }
 
         $(document).ready(function() {
             loadModel('../static/models/mobilenetv1_models/model.json')
             const sizeTypeSelect = $('#sizeType')
             sizeTypeSelect.val(sizeType)
-
-            run()
+            run();
         })
