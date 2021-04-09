@@ -86,7 +86,7 @@ async function onPlay(videoEl) {
         // load emotion model
         async function loadModel(path) {
             EmotionModel = await createModel(path)
-            console.log('EMotion Model Loaded");
+            console.log('EMotion Model Loaded');
         }
 
         function preprocess(imgData) {
