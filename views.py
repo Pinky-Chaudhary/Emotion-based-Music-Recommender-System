@@ -127,7 +127,7 @@ def playlist_created():
 
     playlist_data = mood.get_track_detail_from_playlist(auth_header,playlist_id)
     session['spotify'] = playlist_id
-    playlist_iframe_href = "https://open.spotify.com/playlist/" + playlist_id
+    playlist_iframe_href = "https://open.spotify.com/embed/playlist/" + playlist_id
     return render_template('playlist.html', playlist_iframe_href=playlist_iframe_href,header="Generated Playlist",playlist =playlist_data )
 
   
