@@ -32,6 +32,19 @@ def get_top_artists(auth_header, num_entities):
     return artists
 
 
+def get_artists_for_new_user(auth_header):
+    new_user_artists = []
+    # Getting artists from top-50 india playlist on spotify
+    playlist_api_endpoint = "{}/playlists/37i9dQZEVXbLZ52XmnySJg/tracks?market=IN&fields=items(track(artists(id)))&limit=25".format(SPOTIFY_API_URL)
+    playlist_data = get_spotify_data(playlist_api_endpoint, auth_header)
+    top_artists = playlist_data['items']
+    for artists in top_artists:
+        for artist in artists['track']['artists']:
+            if artist['id'] not in new_user_artists:
+                new_user_artists.append(artist['id'])
+    return new_user_artists
+
+
 def get_related_artists(auth_header, top_artists):
     """ Return list of related artists using users number one top artist """
     new_artists = []
@@ -53,8 +66,6 @@ def get_top_tracks(auth_header,artists):
         request = "{}/artists/{}/top-tracks?country=IN".format(SPOTIFY_API_URL, artist_id)
         track_data = get_spotify_data(request, auth_header)
         tracks = track_data['tracks']
-
-
         for track in tracks:
             track_uri = track['uri']
             track_id = track['id']
@@ -174,10 +185,20 @@ def select_tracks(user_audio_features, mood):
 
 def recently_played(auth_header):
     playlist_tracks = []
-    playlist_api_endpoint = "{}/me/playlists/".format(SPOTIFY_API_URL)
+    playlist_api_endpoint = "{}/me/playlists?limit=16".format(SPOTIFY_API_URL)
     playlist_data = get_spotify_data(playlist_api_endpoint, auth_header)
-    playlist_tracks = playlist_data['items'][0]['id']
+    playlist_tracks = playlist_data['items']
+    playlist_tracks = json.dumps(playlist_tracks)
     return playlist_tracks
+
+
+def get_track_detail_from_playlist(auth_header,playlist_id):
+    playlist_tracks = []
+    playlist_api_endpoint = "{}/playlists/{}/tracks?COUNTRY=IN".format(SPOTIFY_API_URL,playlist_id)
+    playlist_data = get_spotify_data(playlist_api_endpoint, auth_header)
+    playlist_tracks = playlist_data['items']
+
+    return json.dumps(playlist_tracks)
 
 
 
