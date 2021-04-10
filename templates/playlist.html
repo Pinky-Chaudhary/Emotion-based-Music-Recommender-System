@@ -22,7 +22,6 @@
 <script>
 
     var obj = JSON.parse({{ playlist | tojson | safe}});
-	console.log(obj);
 	for (var i = 0; i < obj.length; i++) {
 	    var name = obj[i].track.artists[0].name;
 	    for (var j =1;j<obj[i].track.artists.length;j++){
