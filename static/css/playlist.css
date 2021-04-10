@@ -11,7 +11,7 @@ p{
 }
 
 .chart-table{border-collapse:separate;border-spacing:0;color:#fff;clear:both;width:100%;display:none;}
-.chart-table tbody td.chart-table-position, td.chart-table-track{vertical-align: middle;}
+.chart-table tbody td.chart-table-position, td.chart-table-track{vertical-align: middle;   font-family: "Times New Roman", Times, serif;}
 @media (min-width: 768px){
 .chart-table th:last-child,.chart-table td:last-child{padding-right:20px}
 .chart-table tr,.chart-table td{padding:0;margin:0;}
