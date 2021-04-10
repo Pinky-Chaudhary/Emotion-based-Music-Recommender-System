@@ -121,7 +121,6 @@ def playlist_created():
             cluster = mood.cluster_ids(top_tracks)
             user_tracks = mood.add_and_get_user_tracks(auth_header, cluster)
 
-    print(session.get('artists'))
     audio_feat = mood.standardize_audio_features(user_tracks)
     playlist_tracks = mood.select_tracks(audio_feat, user_mood)
     playlist_id = mood.create_playlist(auth_header, username, playlist_tracks, user_mood, name)
