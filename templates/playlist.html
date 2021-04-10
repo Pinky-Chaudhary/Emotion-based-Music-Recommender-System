@@ -1,14 +1,45 @@
 {% extends 'base.html' %}
 {% block content %}
-	<link href="../static/css/playlist.css" rel="stylesheet">
-	<div class="content">
+    <link href="../static/css/playlist.css" rel="stylesheet" type="text/css" media="screen">
+	<div class="main">
 		<div class="navbar">
         	<h2>{{header}}</h2>
-			<p>          	
+			<p >
 				<a href='/callback' class="button special">Go Back</a>
-          			<a href='/logout' id="logout" class="button special">Logout</a>
+				<a href='/logout' id="logout" class="button special">Logout</a>
 			</p>
       	</div>
-		<iframe src="{{ playlist_iframe_href }}" width="100%" height="900" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
-	</div>
+        <div id="tracks">
+            <iframe src="playlist_iframe_href" width="100%" height=80 frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+            <table class="chart-table" style="display: table;">
+                 <tbody id="table_body">
+
+                 </tbody>
+            </table>
+      </div>
+    </div>
+
+<script>
+
+    var obj = JSON.parse({{ playlist | tojson | safe}});
+	console.log(obj);
+	for (var i = 0; i < obj.length; i++) {
+	    var name = obj[i].track.artists[0].name;
+	    for (var j =1;j<obj[i].track.artists.length;j++){
+	       name += ", " +obj[i].track.artists[j].name;
+	     }
+	     let trackElement = '<td class="chart-table-image"><a href='+obj[i].track.external_urls.spotify+' target="_blank"><img src='+ obj[i].track.album.images[2].url+'></a></td><td class="chart-table-position">'+String(Number(i)+1)+'</td><td class="chart-table-track"><strong>'+obj[i].track.name +'</strong><span> by '+name+'</span></td>'
+	     $('#table_body').append('<tr>'+trackElement+'</tr>');
+	}
+</script>
+<script>
+   const logout = document.getElementById('logout')
+   logout.onclick = myFunction;
+   function myFunction() {
+        const url = 'https://www.spotify.com/logout/'
+        const spotifyLogoutWindow = window.open(url, 'Spotify Logout', 'width=700,height=500,top=40,left=40')
+        setTimeout(() => spotifyLogoutWindow.close(), 1000)
+   }
+</script>
+
 {% endblock %}
