@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block content %}
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+	<link href="../static/css/recently_playlist.css" rel="stylesheet" type="text/css" media="screen">
+	<div class="main">
+		<div class="navbar">
+        	<h2>{{header}}</h2>
+			<p>
+				<a href='/callback' class="button special">Go Back</a>
+				<a href='/logout' id="logout" class="button special">Logout</a>
+			</p>
+      	</div>
+	<div data-aos-easing="ease" data-aos-duration="400" data-aos-delay="0">
+		<div id="tracks" class="playlists-wrapper">
+			<ul id="playlists-list">
+			</ul>
+		</div>
+	</div>
+	</div>
+		<script>
+			var obj = JSON.parse({{ playlist | tojson | safe}});
+			console.log(obj);
+			 for (var i = 0; i < obj.length; i++) {
+			$('#playlists-list').append('<li><a href='+obj[i].external_urls.spotify+'><div data-aos="fade-up" data-aos-delay="" data-aos-duration="600" data-aos-once="true" class="playlists-list-item aos-init aos-animate"><img src='+ obj[i].images[0].url +'><div class="playlists-list-item-text">'+obj[i].name+'</div></div></a></li>')
+			}
+  </script>
+<script>
+   const logout = document.getElementById('logout')
+   logout.onclick = myFunction;
+   function myFunction() {
+        const url = 'https://www.spotify.com/logout/'
+        const spotifyLogoutWindow = window.open(url, 'Spotify Logout', 'width=700,height=500,top=40,left=40')
+        setTimeout(() => spotifyLogoutWindow.close(), 1000)
+   }
+</script>
+
+{% endblock %}
