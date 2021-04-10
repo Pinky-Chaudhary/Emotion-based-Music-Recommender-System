@@ -1,3 +1,14 @@
+h2{
+    font-weight: bold;
+    width:70%;
+    text-align:center;
+}
+.main{
+    background-color: #f5a658;
+}
+p{
+   margin:0;
+}
 @keyframes fadein {
   from {
     opacity: 0;
@@ -37,6 +48,7 @@
 .playlists-list-item {
   position: relative;
   text-align: center;
+    font-family: "Times New Roman", Times, serif;
   color: white;
 }
 
