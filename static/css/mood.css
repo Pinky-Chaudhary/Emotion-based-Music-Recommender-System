@@ -1,3 +1,6 @@
+body{
+  background-color: #fff1c7;
+}
 input[type=text]{
   width: 200px;
   box-sizing: border-box;
@@ -30,7 +33,6 @@ h1{
   flex-direction: column;
   justify-content: center;
   align-items: center;
-   background-color: #fff1c7;
 }
 .side-by-side {
   display: flex;
