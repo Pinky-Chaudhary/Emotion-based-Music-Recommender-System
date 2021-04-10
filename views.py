@@ -129,7 +129,7 @@ def playlist_created():
     playlist_data = mood.get_track_detail_from_playlist(auth_header,playlist_id)
     session['spotify'] = playlist_id
     playlist_iframe_href = "https://open.spotify.com/playlist/" + playlist_id
-    return render_template('playlist.html', playlist_iframe_href=playlist_iframe_href,header="Your Playlist hase been created",playlist =playlist_data )
+    return render_template('playlist.html', playlist_iframe_href=playlist_iframe_href,header="Generated Playlist",playlist =playlist_data )
 
   
   
@@ -140,7 +140,7 @@ def playlist_created_by_user():
     token = session.get('access_token')
     auth_header = spotify.get_auth_header(token)
     playlist = mood.recently_played(auth_header)
-    return render_template('recent_playlist.html', playlist = playlist, header="Recently Played Songs")
+    return render_template('recent_playlist.html', playlist = playlist, header="Your Top Playlist")
 
 @app.route('/logout')
 def logout():
