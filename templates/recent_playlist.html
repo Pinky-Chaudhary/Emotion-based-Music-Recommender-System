@@ -20,9 +20,13 @@
 	</div>
 		<script>
 			var obj = JSON.parse({{ playlist | tojson | safe}});
-			console.log(obj);
-			 for (var i = 0; i < obj.length; i++) {
-			$('#playlists-list').append('<li><a href='+obj[i].external_urls.spotify+'><div data-aos="fade-up" data-aos-delay="" data-aos-duration="600" data-aos-once="true" class="playlists-list-item aos-init aos-animate"><img src='+ obj[i].images[0].url +'><div class="playlists-list-item-text">'+obj[i].name+'</div></div></a></li>')
+			if (obj.length == 0){
+				$('#playlists-list').append("<h1>Looks Like You Have No Playlist</h1>");
+			}
+			else{
+				for (var i = 0; i < obj.length; i++) {
+					$('#playlists-list').append('<li><a href='+obj[i].external_urls.spotify+'><div data-aos="fade-up" data-aos-delay="" data-aos-duration="600" data-aos-once="true" class="playlists-list-item aos-init aos-animate"><img src='+ obj[i].images[0].url +'><div class="playlists-list-item-text">'+obj[i].name+'</div></div></a></li>')
+				}
 			}
   </script>
 <script>
