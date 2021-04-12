@@ -71,7 +71,7 @@ async function onPlay(videoEl) {
                     ctx.closePath();
                 }
             }
-            setTimeout(() => onPlay(videoEl))
+            setTimeout((){ onPlay(videoEl)},100;)
             var status = document.getElementById('status');
             status.innerHTML = "Running the model ... ";
         }
