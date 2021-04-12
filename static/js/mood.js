@@ -1,4 +1,4 @@
-let scoreThreshold = 0.5
+let scoreThreshold = 0.7
 let sizeType = '160'
 let modelLoaded = false
 var cImg;
@@ -133,7 +133,7 @@ async function onPlay(videoEl) {
         }
 
          $(document).ready(async function(){
-            EmotionModel = await tf.loadLayersModel('../static/models/mobilenetv2_models/model.json');
+            EmotionModel = await tf.loadLayersModel('../static/models/mobilenetv1_models/model.json');
             const sizeTypeSelect = $('#sizeType');
             sizeTypeSelect.val(sizeType);
             run();
