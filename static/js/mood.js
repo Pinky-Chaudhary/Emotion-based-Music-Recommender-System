@@ -71,7 +71,7 @@ async function onPlay(videoEl) {
                     ctx.closePath();
                 }
             }
-            setTimeout((){ onPlay(videoEl)},100;)
+            setTimeout(() => onPlay(videoEl))
             var status = document.getElementById('status');
             status.innerHTML = "Running the model ... ";
         }
@@ -86,7 +86,6 @@ async function onPlay(videoEl) {
         // load emotion model
         async function loadModel(path) {
             EmotionModel = await createModel(path)
-            console.log('EMotion Model Loaded');
         }
 
         function preprocess(imgData) {
