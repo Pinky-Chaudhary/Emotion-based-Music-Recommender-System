@@ -105,22 +105,25 @@ def playlist_created():
     """ Create playlist """
     token = session.get('access_token')
     username = session.get('user')
+    print("user detected")
     auth_header = spotify.get_auth_header(token)
     name = request.args.get('name')
     user_mood = int(request.args.get('mood'))
     session['name'] = name
-
+  
+    print("data access")
     user = db.session.query(User).filter(User.id == username).one()
     user_tracks = user.tracks
 
     if not user_tracks:
         try:
+            print("in if")
             user_artists = session.get('artists')
         finally:
             top_tracks = mood.get_top_tracks(auth_header, user_artists)
             cluster = mood.cluster_ids(top_tracks)
             user_tracks = mood.add_and_get_user_tracks(auth_header, cluster)
-
+    print("after if")
     audio_feat = mood.standardize_audio_features(user_tracks)
     playlist_tracks = mood.select_tracks(audio_feat, user_mood)
     playlist_id = mood.create_playlist(auth_header, username, playlist_tracks, user_mood, name)
